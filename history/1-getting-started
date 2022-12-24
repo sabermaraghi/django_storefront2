@@ -4,7 +4,7 @@ create user 'saber'@'localhost' identified by 'MyPassword';
 grant usage on *.* to 'saber'@'localhost';
 grant all privileges on *.* to 'saber'@'localhost';
 FLUSH PRIVILEGES;
-create database storefront;
+create database storefront2;
 
 vim storefront/settings.py
 
@@ -17,12 +17,14 @@ DATABASES = {
         'PASSWORD': 'MyPassword'
     }
 
-run datagrip application and restore seed.sql to storefront database
+run datagrip application and restore seed.sql to storefront2 database
 
+cp /home/saber/Desktop/django-mosh/the-ultimate-django-series-part2/1. Getting Started/3- Supplementary Materials/Resources/Code/1- Getting Started/Start/storefront2 ~/Desktop
+cd $_
+pipenv install
+pipenv shell
 python manage.py migrate
 
 check data recieved in datagrip application
 python manage.py runserver
 check it in browser
-
-cp /home/saber/Desktop/django-mosh/the-ultimate-django-series-part2/1. Getting Started/3- Supplementary Materials/Resources/Code/1- Getting Started/Start/storefront2 ~/Desktop
