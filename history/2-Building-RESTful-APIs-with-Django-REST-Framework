@@ -136,7 +136,7 @@ class ProductSerializer(serializers.Serializer):
         return product.unit_price * Decimal(1.1)
 
 #######################################
-    # 11- Serializing Relationships
+    # 11- Serializing Relationships : primary key, string, nested object, hyperlink
 
 vim store/serializers.py
 
