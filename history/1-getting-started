@@ -28,3 +28,7 @@ python manage.py migrate
 check data recieved in datagrip application
 python manage.py runserver
 check it in browser
+
+python manage.py createsuperuser
+admin
+admin
