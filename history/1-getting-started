@@ -1,0 +1,28 @@
+sudo su -
+mysql
+create user 'saber'@'localhost' identified by 'MyPassword';
+grant usage on *.* to 'saber'@'localhost';
+grant all privileges on *.* to 'saber'@'localhost';
+FLUSH PRIVILEGES;
+create database storefront;
+
+vim storefront/settings.py
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'storefront2',
+        'HOST': 'localhost',
+        'USER': 'saber',
+        'PASSWORD': 'MyPassword'
+    }
+
+run datagrip application and restore seed.sql to storefront database
+
+python manage.py migrate
+
+check data recieved in datagrip application
+python manage.py runserver
+check it in browser
+
+cp /home/saber/Desktop/django-mosh/the-ultimate-django-series-part2/1. Getting Started/3- Supplementary Materials/Resources/Code/1- Getting Started/Start/storefront2 ~/Desktop
