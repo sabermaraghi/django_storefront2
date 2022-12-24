@@ -138,11 +138,67 @@ class ProductSerializer(serializers.Serializer):
 #######################################
     # 11- Serializing Relationships
 
+vim store/serializers.py
 
+from store.models import Collection
+class ProductSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    title = serializers.CharField(max_length=255)
+    unit_price = serializers.DecimalField(max_digits=6, decimal_places=2)
+    price_with_tax = serializers.SerializerMethodField(method_name='calculate_tax')
+    #collection = serializers.PrimaryKeyRelatedField(
+    #    queryset=Collection.objects.all()
+    #)
+    # or 
+    #collection = serializers.StringRelatedField()
+    # or
+    #collection = CollectionSerializer()
+    # or
+ ##########   
+    collection = serializers.HyperlinkedRelatedField(
+        queryset=Collection.objects.all(),
+        view_name='collection-detail'
+    )
+vim store/urls.py
+urlpatterns = [
+    ...
+    path('collections/<int:pk>/', views.collection_detail, name='collection-detail'),
+]
+###########
+vim store/views.py
+@api_view()
+def collection_detail(request, pk):
+    return Response('ok')
 
+################
+vim store/views.py
+@api_view()
+def product_list(request):
+    #queryset = Product.objects.all()
+    queryset = Product.objects.select_related('collection').all()
 
-
-
+class CollectionSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    title = serializers.CharField(max_length=255)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 
 
