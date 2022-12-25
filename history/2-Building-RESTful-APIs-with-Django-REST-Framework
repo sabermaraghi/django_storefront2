@@ -209,9 +209,21 @@ class CollectionSerializer(serializers.ModelSerializer):
         view_name='collection-detail'
     )
 #######################################
-    # 
+    # 13- Deserializing Objects
+vim store/views.py  
+@api_view(['GET', 'POST'])
+def product_list(request):
+    if request.method == 'GET':
+        #queryset = Product.objects.all()
+        queryset = Product.objects.select_related('collection').all()
+        serializer = ProductSerializer(queryset, many=True, context={'request': request})
+        return Response(serializer.data)
+    elif request.data == 'POST':
+        serializer = ProductSerializer(data=request.data)
+        # serializer.validated_data
+        return Response('ok')
     
-    
+
     
     
     
