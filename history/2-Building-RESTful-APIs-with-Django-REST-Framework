@@ -256,7 +256,7 @@ def product_list(request):
         print(serializer.validated_data)
         return Response('ok')    
 ######################################
-    # 
+    # 15- Saving Objects
     
     
     
